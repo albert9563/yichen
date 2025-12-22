@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>一週七天花費分析</title>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  #column_chart {
+    width: 900px;
+    height: 500px;
+    margin: auto;
+  }
+  .pie-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .pie-chart {
+    width: 400px;
+    height: 300px;
+    margin: 10px;
+  }
+</style>
+
+<script>
+google.charts.load('current', {'packages':['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawCharts);
+
+function drawCharts() {
+
+  /* ===== 上方：一週總花費（直條圖） ===== */
+  var columnData = google.visualization.arrayToDataTable([
+    ['Day', 'Total Cost'],
+    ['Mon', 320],
+    ['Tue', 280],
+    ['Wed', 300],
+    ['Thu', 260],
+    ['Fri', 450],
+    ['Sat', 600],
+    ['Sun', 520]
+  ]);
+
+  var columnOptions = {
+    title: '一週每日總花費比較',
+    hAxis: { title: '星期' },
+    vAxis: { title: '金額（元）' }
+  };
+
+  var columnChart = new google.visualization.ColumnChart(
+    document.getElementById('column_chart')
+  );
+  columnChart.draw(columnData, columnOptions);
+
+  /* ===== 下方：每天的圓餅圖 ===== */
+  drawPie('pie_mon', '星期一花費分布', 120, 50, 80, 70);
+  drawPie('pie_tue', '星期二花費分布', 110, 40, 60, 70);
+  drawPie('pie_wed', '星期三花費分布', 130, 50, 70, 50);
+  drawPie('pie_thu', '星期四花費分布', 100, 40, 60, 60);
+  drawPie('pie_fri', '星期五花費分布', 180, 70, 120, 80);
+  drawPie('pie_sat', '星期六花費分布', 250, 100, 180, 70);
+  drawPie('pie_sun', '星期日花費分布', 220, 90, 150, 60);
+}
+
+/* ===== 畫圓餅圖的共用函式 ===== */
+function drawPie(id, title, food, transport, entertainment, other) {
+
+  var data = google.visualization.arrayToDataTable([
+    ['Category', 'Cost'],
+    ['餐飲', food],
+    ['交通', transport],
+    ['娛樂', entertainment],
+    ['其他', other]
+  ]);
+
+  var options = {
+    title: title,
+    pieHole: 0.4   // Donut Chart（投影片有教）
+  };
+
+  var chart = new google.visualization.PieChart(
+    document.getElementById(id)
+  );
+  chart.draw(data, options);
+}
+</script>
+
+</head>
+
+<body>
+
+<h2>一週七天花費分析視覺化</h2>
+
+<!-- 上方直條圖 -->
+<div id="column_chart"></div>
+
+<!-- 下方圓餅圖 -->
+<div class="pie-container">
+  <div id="pie_mon" class="pie-chart"></div>
+  <div id="pie_tue" class="pie-chart"></div>
+  <div id="pie_wed" class="pie-chart"></div>
+  <div id="pie_thu" class="pie-chart"></div>
+  <div id="pie_fri" class="pie-chart"></div>
+  <div id="pie_sat" class="pie-chart"></div>
+  <div id="pie_sun" class="pie-chart"></div>
+</div>
+
+</body>
+</html>
