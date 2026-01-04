@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>測驗區</title>
+
+<style>
+.header {background-color: #f1f1f1; padding: 20px; text-align: center;}
+.nav {
+  background-color: black;
+  height: 50px;
+  position: sticky;
+  top:0px;
+  z-index:999;
+  width: 100%;
+}
+.nav a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+* {box-sizing: border-box;}
+.column {float: left; width: 50%; padding: 15px; height:500px;}
+@media screen and (max-width:600px) {
+  .column {width: 100%;}
+}
+.footer {clear: both; background-color: #f1f1f1; text-align: center;}
+body{margin: 0px;}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+  <h1>測驗區</h1>
+</div>
+
+<div class="nav">
+   <a href="119.html">首頁</a>
+   <a href="麻將牌介紹與基本流程.html">麻將牌介紹與基本流程</a>
+   <a href="麻將台數計算.html">麻將台數計算</a>
+   <a href="測驗區.html">測驗區</a>
+</div>
+
+<p>Q1：碰碰胡是幾台？</p>
+<input id="demo1" type="text">
+<button onclick="test1()">提交</button>
+<p id="info1"></p>
+
+<p>Q2：一副台灣麻將共有幾張牌？</p>
+<input id="demo2" type="text">
+<button onclick="test2()">提交</button>
+<p id="info2"></p>
+
+<p>Q3：麻將一局最少幾名玩家？</p>
+<input id="demo3" type="text">
+<button onclick="test3()">提交</button>
+<p id="info3"></p>
+
+<script>
+function test1() {
+  let x = Number(document.getElementById("demo1").value);
+  let info = document.getElementById("info1");
+  if (!x) info.innerHTML="請輸入答案";
+  else if (x === 4) info.innerHTML="答對了！";
+  else info.innerHTML="答錯了！";
+}
+
+function test2() {
+  let x = Number(document.getElementById("demo2").value);
+  let info = document.getElementById("info2");
+  if (!x) info.innerHTML="請輸入答案";
+  else if (x === 136) info.innerHTML="答對了！";
+  else info.innerHTML="答錯了！";
+}
+
+function test3() {
+  let x = Number(document.getElementById("demo3").value);
+  let info = document.getElementById("info3");
+  if (!x) info.innerHTML="請輸入答案";
+  else if (x === 4) info.innerHTML="答對了！";
+  else info.innerHTML="答錯了！";
+}
+</script>
+
+
+</body>
+</html>
